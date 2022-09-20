@@ -21,3 +21,7 @@ firmware/githash.h
 # Tracing
 energytrace.png
 energytrace.txt
+
+# Misc
+venv/
+.vscode/
