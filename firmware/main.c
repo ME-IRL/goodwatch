@@ -137,7 +137,7 @@ int main(void) {
   uart_init();
   
   // Setup and enable WDT 250ms, ACLK, interval timer
-  WDTCTL = WDT_ADLY_250;
+  WDTCTL = WDT_ADLY_16; // Changed to 15.625ms for receiver
   SFRIE1 |= WDTIE;
 
 
@@ -171,6 +171,21 @@ int main(void) {
 void __attribute__ ((interrupt(WDT_VECTOR))) watchdog_timer (void) {
   static int latch=0;
   static int oldsec;
+
+  // Clock divider (counter)
+  static int div = 0;
+  div++;
+
+  // Draw every other time
+  if(applet->draw == receiver_draw && (div & 1)){
+    lcd_predraw();
+    app_draw(0); //Unforced, because it's a regular timer.
+    lcd_postdraw();
+  }
+
+  // Don't redraw other apps
+  // only draw once every 16 times == 250ms
+  if(div & 0xF) return;
 
   /* When the UART is in use, we don't want to hog interrupt time, so
      we will silently return.
@@ -216,7 +231,10 @@ void __attribute__ ((interrupt(WDT_VECTOR))) watchdog_timer (void) {
      everything else is the app's responsibility. */
   if(applet->draw!=clock_draw || (oldsec!=RTCSEC)){
     oldsec=RTCSEC;
-    
+
+    // No need to draw receiver since drawn at every 15.625ms x2 (every 31.25ms)
+    if(applet->draw != receiver_draw) return;
+
     lcd_predraw();
     app_draw(0); //Unforced, because it's a regular timer.
     lcd_postdraw();
