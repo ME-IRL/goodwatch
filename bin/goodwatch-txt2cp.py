@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 ## This quick and dirty tool converts a textfile of frequencies and
 ## names into a GoodWatch codeplug, for storage in information flash

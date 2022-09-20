@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 
 ## This is a quick and dirty BSL client by Travis Goodspeed for the

@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/env python2
 
 ## This is a quick and dirty python client for communicating with a
 ## GoodWatch over its UART.  I mostly use it to quickly prototype

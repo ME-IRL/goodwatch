@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 ## This is a quick little python script that takes the output of
 ## energytrace-util, averages the current consumption for all samples

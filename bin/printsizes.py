@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 ## Quick little pyelftools script to test the size of a CC430F6137
 ## firmware image, warning the user if it looks too big.
