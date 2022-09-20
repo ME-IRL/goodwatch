@@ -193,6 +193,13 @@ const struct app subapps[]={
   },
 #endif
 
+#ifdef RECEIVER_APP
+  //Morse receiver app
+  {.name="receiver", .init=receiver_init, .draw=receiver_draw, .exit=receiver_exit,
+   .keypress=receiver_keypress
+  },
+#endif
+
   //End on null entry.
   {.name=0, .init=0, .draw=0, .exit=0} 
 };
